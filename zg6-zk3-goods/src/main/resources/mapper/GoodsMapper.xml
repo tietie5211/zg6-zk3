@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjs.mapper.GoodsMapper">
+
+    <resultMap id="BaseResultMap" type="com.wjs.pojo.Goods">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
+        <result property="afterServer" column="after_server" jdbcType="VARCHAR"/>
+        <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
+        <result property="evaluateNum" column="evaluate_num" jdbcType="VARCHAR"/>
+        <result property="isPut" column="is_put" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,name,brand_id,
+        after_server,introduce,evaluate_num,
+        is_put,status,create_time,
+        update_time
+    </sql>
+    <insert id="addBrand" parameterType="com.wjs.pojo.Brand">
+        insert into brand(brand_name)values (#{brandName})
+    </insert>
+    <select id="brandList" resultType="com.wjs.pojo.Brand">
+        select id, brand_name
+        from brand
+    </select>
+    <select id="selectAll" resultType="com.wjs.pojo.Goods">
+        select a.id,
+               a.name,
+               a.brand_id,
+               a.after_server,
+               a.introduce,
+               a.evaluate_num,
+               a.is_put,
+               a.status,
+               a.create_time,
+               a.update_time,
+               b.brand_name,
+               a.order_num,
+               a.picture,
+               a.price
+        from goods a
+                 join brand b on a.brand_id = b.id
+
+    </select>
+</mapper>

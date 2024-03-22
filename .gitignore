@@ -1,0 +1,4 @@
+# Project exclude paths
+/zg6-zk3-common/target/
+/zg6-zk3-gateway/target/
+/zg6-zk3-goods/target/
